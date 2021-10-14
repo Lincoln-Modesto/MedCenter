@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import { useModalContext } from '../../context/ModalContext';
+
 import Header from '../Header';
 import TableHeader from '../TableHeader';
 import TableRow from '../TableRow';
@@ -6,7 +9,28 @@ import Search from '../Search';
 
 import './styles.css';
 
+import api from '../../services/randomUser';
+
 export default function Home() {
+
+    const [pacients, setPacients] = useState({})
+
+    async function loadPacients(){
+        try{
+            const response = await api.get('/?results=50');
+            const res = response.data
+            setPacients(res)
+        }catch(err){
+            console.log(err.message)
+        }
+    }
+
+    // eslint-disable-next-line
+    useEffect( () => {
+        loadPacients()
+    },[])
+   
+    let {results} = pacients
 
     return (
         <>
@@ -27,11 +51,11 @@ export default function Home() {
                         <TableHeader name='Ações' col='col-3' />
                     </tr>
                     </thead>
-                    <TableRow/>
+                   {results?.map( (pacient) => <TableRow key={pacient.phone}/> )}
                 </table>
               
                 <div className="d-flex justify-content-center mt-5">
-                    <LoadButton />
+                    <LoadButton/>
                 </div>
             </main>
 

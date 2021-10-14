@@ -5,5 +5,11 @@ td{
     color: #323232;
     background: #fff;
     text-align: center;
-    cursor: pointer;
+    
+}
+
+a{
+    text-decoration: none;
+    color: #323232;
+    font-size: 18px;
 }

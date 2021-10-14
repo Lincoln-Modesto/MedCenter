@@ -10,6 +10,7 @@ import Acount from '../../assets/account_circle.png';
 import Close from '../../assets/clear.png';
 
 import './styles.css';
+import { Link } from 'react-router-dom';
 
 export default function Modal(){
 
@@ -19,9 +20,9 @@ export default function Modal(){
         <>
           { visible && <div className="modal d-flex justify-content-center align-items-center">
             <div className="container">
-                <button className="close" onClick={closeModal}>
+                <Link className="close" onClick={closeModal} to="/">
                     <img src={Close} alt="close"/>
-                </button>
+                </Link>
                 <img src={User} className="user" alt="user" />
                 <div className="modal-title">
                     <h2>Marcos dos Santos</h2>
