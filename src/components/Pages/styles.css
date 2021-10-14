@@ -3,3 +3,11 @@ h2{
     font-size: 30px;
 }
 
+button{
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    color: #2C3E50;
+    margin-bottom: 15px;
+}

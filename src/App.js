@@ -7,8 +7,8 @@ export default function App() {
     return (
         <BrowserRouter>
             <ModalProvider>
-                <Home/>
                 <Routes/>
+                <Home />
             </ModalProvider>
         </BrowserRouter>
     )
