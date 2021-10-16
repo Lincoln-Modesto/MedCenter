@@ -9,6 +9,7 @@ const ModalProvider = ({ children }) => {
 
   const openModal = (payload) =>
   setModalState({ ...payload, visible: true });
+
   const closeModal = () => setModalState({ visible: false });
 
   return (

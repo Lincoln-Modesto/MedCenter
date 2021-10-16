@@ -1,0 +1,25 @@
+td{
+    border: 1px solid #c4c4c4;
+    padding: 20px;
+    font-size: 16px;
+    color: #323232;
+    background: #fff;
+    text-align: center;
+}
+
+.modalOpen{
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    background: #22759E;
+    opacity: 0.8;
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+
+
+a:hover{
+    color: white;
+    opacity: 1;
+}

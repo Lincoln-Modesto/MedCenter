@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useModalContext } from '../../context/ModalContext';
+import { useEffect} from 'react';
+import { usePacientContext } from '../../context/PacientContext';
 
 import Header from '../Header';
 import TableHeader from '../TableHeader';
@@ -9,38 +9,25 @@ import Load from '../../assets/replay.png';
 
 import './styles.css';
 
-import api from '../../services/randomUser';
-
 export default function Home() {
 
-    const [pacients, setPacients] = useState([]);
+    const { loadPacients, pacients } = usePacientContext();
 
     useEffect(() => {
         loadPacients()
     }, [])
 
-    async function loadPacients() {
-        try {
-            const response = await api.get('/?results=2');
-            const res = response.data?.results;
-            Array.prototype.push.apply(res, pacients);
-            setPacients(res)
-            console.log(pacients)
-        } catch (err) {
-            console.log(err.message)
-        }
-    }
-
     return (
         <>
             <Header />
+            <main>
             <div>
                 <div className="py-5 px-5" >
                     <h2>Lista de pacientes</h2>
                 </div>
                 <Search />
             </div>
-            <main className="d-flex justify-content-center mx-5 flex-column">
+            <section className="d-flex justify-content-center mx-5 flex-column">
                 <table className="col-12">
                     <thead>
                         <tr>
@@ -50,7 +37,9 @@ export default function Home() {
                             <TableHeader name='Ações' col='col-3' />
                         </tr>
                     </thead>
-                    {pacients.map((pacient) => <TableRow key={pacient.phone} />)}
+                    {pacients.map((pacient) => 
+                        <TableRow pacient={pacient} key={pacient?.id?.value}/>
+                    )}
                 </table>
 
                 <div className="d-flex justify-content-center mt-5">
@@ -59,8 +48,8 @@ export default function Home() {
                         <span>Carregar mais</span>
                     </button>
                 </div>
+            </section>
             </main>
-
         </>
     )
 }
