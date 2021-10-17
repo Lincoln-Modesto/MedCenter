@@ -48,3 +48,20 @@
     position: relative;
     right: -200px;
 }
+
+.btn{
+    font-size: 14px;
+    font-weight: bold;
+    color: #646464;
+    background-color: #c4c4c4; 
+}
+
+.btn:focus{
+    border: none
+}
+
+.share-url{
+    border: 1px solid #c4c4c4;
+    padding: 3px 8px;
+    border-radius: 5px;
+}

@@ -11,7 +11,7 @@ function PacientProvider({children}){
 
     async function loadPacients() {
         try {
-            const response = await api.get('/?results=2');
+            const response = await api.get('/?results=50');
             const res = response.data?.results;
             Array.prototype.unshift.apply(res, pacients);
             setPacients(res);

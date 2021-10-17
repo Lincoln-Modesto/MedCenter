@@ -6,7 +6,7 @@ import './styles.css';
 export default function TableRow({ pacient }) {
 
     const { openModal } = useModalContext()
-    const toModal = () => openModal({pacient})
+    const toggleModal = () => openModal({pacient})
 
     return (
         <tbody>
@@ -15,7 +15,7 @@ export default function TableRow({ pacient }) {
                 <TableCel title={pacient?.gender === 'female' ? 'Feminino' : 'Masculino'}/>
                 <TableCel title={pacient?.dob?.date.substring(0, 10)}/>
                 <td>
-                    <Link className="modalOpen" to="/pacient/123" onClick={toModal}>Visualizar</Link>
+                    <Link className="modalOpen" to={`/pacient/${pacient?.id?.value}`} onClick={toggleModal}>Visualizar</Link>
                 </td>
             </tr>
         </tbody>
