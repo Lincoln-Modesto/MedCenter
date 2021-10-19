@@ -70,12 +70,12 @@ export default function Modal() {
                                 + pacient?.location?.city + ', ' + pacient?.location?.state}</h5>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center justify-content-center mt-4 mb-2 share-container">
-                        <input class="share-url"
+                    <div className="d-flex align-items-center justify-content-center mt-4 mb-2 share-container">
+                        <input className="share-url"
                             id="toCopy"
                             readOnly
                             value={`http://localhost:3000/${pacient?.id?.value}`} />
-                        <button class="btn" id="btn" data-clipboard-target="#toCopy">
+                        <button className="btn" id="btn" data-clipboard-target="#toCopy">
                             Copiar
                         </button>
                     </div>

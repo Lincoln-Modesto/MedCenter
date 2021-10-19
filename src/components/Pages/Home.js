@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { usePacientContext } from '../../context/PacientContext';
 
 import Header from '../Header';
@@ -13,16 +13,23 @@ export default function Home() {
     const { loadPacients, pacients } = usePacientContext();
 
     const [searchTerm, setSerachTerm] = useState('');
-   
-    const filteredPacients = pacients.filter((pacient) => (
-        
-        pacient.name.first.toLowerCase().includes(searchTerm.toLowerCase()) || 
-        pacient.name.last.toLowerCase().includes(searchTerm.toLowerCase()) 
-    ));
+    
+    localStorage.setItem("pacients", JSON.stringify(pacients));
+    let pacientsReturn = localStorage.getItem("pacients");
+    const pacientsArray = JSON.parse(pacientsReturn);
 
+    const filteredPacients = useMemo(() => (
+        pacientsArray?.filter((pacient) => (
+            pacient.name.first.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            pacient?.location?.country.toLowerCase().includes(searchTerm.toLowerCase())
+        ))
+    ), [pacientsArray, searchTerm]);
+    
     useEffect(() => {
-        loadPacients()
+        if(pacientsArray.length === 0){
+        loadPacients()}
     }, [])
+
 
     return (
         <>
@@ -35,7 +42,7 @@ export default function Home() {
                     <div className='col-10 d-flex justify-content-center mb-5 search-container'>
                         <input
                             value={searchTerm}
-                            placeholder='Pesquisar paciente'
+                            placeholder='Pesquisar paciente por nome ou nacionalidade'
                             onChange={(event) => setSerachTerm(event.target.value)}
                             className="search-bar"
                             />
@@ -52,7 +59,7 @@ export default function Home() {
                             </tr>
                         </thead>
                         {filteredPacients.map((pacient) =>
-                            <TableRow pacient={pacient} key={pacient?.id?.value} />
+                            <TableRow pacient={pacient} key={pacient?.phone} />
                         )}
                     </table>
 
