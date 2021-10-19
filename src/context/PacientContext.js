@@ -12,10 +12,11 @@ function PacientProvider({children}){
 
     async function loadPacients() {
         try {
-            const response = await api.get('/?results=50');
+            const response = await api.get('/?results=5');
             const res = response.data?.results;
             Array.prototype.unshift.apply(res, pacients);
             setPacients(res);
+            localStorage.setItem("pacients", JSON.stringify(pacients));
         } catch (err) {
             console.log(err.message);
         }

@@ -13,10 +13,10 @@ export default function Home() {
     const { loadPacients, pacients } = usePacientContext();
 
     const [searchTerm, setSerachTerm] = useState('');
-    
-    localStorage.setItem("pacients", JSON.stringify(pacients));
+
     let pacientsReturn = localStorage.getItem("pacients");
     const pacientsArray = JSON.parse(pacientsReturn);
+    console.log(pacientsArray)
 
     const filteredPacients = useMemo(() => (
         pacientsArray?.filter((pacient) => (
@@ -24,10 +24,15 @@ export default function Home() {
             pacient?.location?.country.toLowerCase().includes(searchTerm.toLowerCase())
         ))
     ), [pacientsArray, searchTerm]);
-    
+
     useEffect(() => {
-        if(pacientsArray.length === 0){
-        loadPacients()}
+        if (pacientsArray.length === 0) {
+            
+            loadPacients()
+        }
+        else {
+            return false
+        }
     }, [])
 
 
@@ -45,7 +50,7 @@ export default function Home() {
                             placeholder='Pesquisar paciente por nome ou nacionalidade'
                             onChange={(event) => setSerachTerm(event.target.value)}
                             className="search-bar"
-                            />
+                        />
                     </div>
                 </div>
                 <section className="d-flex justify-content-center mx-5 flex-column">
