@@ -16,7 +16,6 @@ function PacientProvider({children}){
             const res = response.data?.results;
             Array.prototype.unshift.apply(res, pacients);
             setPacients(res);
-            localStorage.setItem("pacients", JSON.stringify(pacients));
         } catch (err) {
             console.log(err.message);
         }

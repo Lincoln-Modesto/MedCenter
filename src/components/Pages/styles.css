@@ -35,3 +35,7 @@ input:focus {
 .search-container{
     margin: 0 auto;
 }
+
+main{
+    background: #FCFCFC;
+}

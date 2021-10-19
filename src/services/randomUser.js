@@ -1,8 +1,10 @@
-  
-import axios from 'axios'
+ import { setup } from 'axios-cache-adapter'
 
-const api = axios.create({
-    baseURL: 'https://randomuser.me/api'
+const api = setup({
+    baseURL: 'https://randomuser.me/api',
+    cache: {
+         maxAge: 15 * 60 * 1000  
+        }      
 })
 
 export default api

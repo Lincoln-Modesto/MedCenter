@@ -14,27 +14,17 @@ export default function Home() {
 
     const [searchTerm, setSerachTerm] = useState('');
 
-    let pacientsReturn = localStorage.getItem("pacients");
-    const pacientsArray = JSON.parse(pacientsReturn);
-    console.log(pacientsArray)
+    useEffect(() => {
+
+        loadPacients()
+    }, [])
 
     const filteredPacients = useMemo(() => (
-        pacientsArray?.filter((pacient) => (
+        pacients?.filter((pacient) => (
             pacient.name.first.toLowerCase().includes(searchTerm.toLowerCase()) ||
             pacient?.location?.country.toLowerCase().includes(searchTerm.toLowerCase())
         ))
-    ), [pacientsArray, searchTerm]);
-
-    useEffect(() => {
-        if (pacientsArray.length === 0) {
-            
-            loadPacients()
-        }
-        else {
-            return false
-        }
-    }, [])
-
+    ), [pacients, searchTerm]);
 
     return (
         <>
