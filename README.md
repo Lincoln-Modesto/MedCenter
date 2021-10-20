@@ -14,7 +14,7 @@ A aplicação será aberta no browser em: [http://localhost:3000](http://localho
 
 #### Para a listagem de usuários, foi utilizada a REST API: https://randomuser.me/documentation
 
-![home](./src/assets/image1.jpg?raw=true "home")
-![home](./src/assets/image3.jpg?raw=true "home")
-![home](./src/assets/image2.jpg?raw=true "modal")
+![home](src/assets/image1.jpg?raw=true "home")
+![home2](src/assets/image3.jpg?raw=true "home2")
+![modal](src/assets/image2.jpg?raw=true "modal")
 
