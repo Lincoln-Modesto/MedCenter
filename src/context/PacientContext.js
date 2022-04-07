@@ -6,13 +6,14 @@ import api from '../services/randomUser';
 // Context
 const PacientContext = createContext({});
 
+//Provider
 function PacientProvider({children}){
 
     const [pacients, setPacients] = useState([]);
 
     async function loadPacients() {
         try {
-            const response = await api.get('/?results=5');
+            const response = await api.get('/?results=50');
             const res = response.data?.results;
             Array.prototype.unshift.apply(res, pacients);
             setPacients(res);
@@ -30,7 +31,8 @@ function PacientProvider({children}){
   );
 } 
 
-const usePacientContext= () => {
+//Hook
+const usePacientContext = () => {
     const context = useContext(PacientContext);
     return context;
   };

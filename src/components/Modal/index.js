@@ -12,7 +12,6 @@ import Close from '../../assets/clear.png';
 
 import './styles.css';
 
-
 export default function Modal() {
 
     const { modalState: { pacient, visible }, closeModal } = useModalContext();
